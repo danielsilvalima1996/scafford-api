@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: app_postgres
+    environment:
+      POSTGRES_DB: skeleton_db
+      POSTGRES_USER: user_admin
+      POSTGRES_PASSWORD: pwd_secret_123
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: app_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db

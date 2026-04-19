@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: scafford-api
+  datasource:
+    # O "auth_db" deve estar APENAS aqui
+    url: jdbc:postgresql://localhost:5432/auth_db
+    username: user_admin
+    password: pwd_secret_123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    clenaDisabled: t
+  threads:
+    virtual:
+      enabled: true # Habilita Virtual Threads do Java 21
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:minha-chave-secreta-de-32-caracteres}
+      expiration: 2 # Horas
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.security: DEBUG
+google:
+  client-id: ${GOOGLE_CLIENT_ID:sada}
